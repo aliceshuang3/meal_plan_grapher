@@ -1,0 +1,46 @@
+<!-- Alice Huang, 3/11/20
+Financal Literacy Budget/Meal Plan Tracker Project
+Src code: https://redstapler.co/javascript-realtime-chart-plotly/
+
+Plots a real-time updating line graph. -->
+
+<html>
+    <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="plotly-latest.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    </head>
+    <body>
+    <div class="navbar"><span>Swarthmore Meal Plan Tracker</span></div>
+    <div class="wrapper">
+        <div id="chart"></div>
+        <script>
+            function getData() {
+                return Math.random();
+            }
+            // create line chart
+            Plotly.plot('chart',[{
+                y:[getData()], // pass array
+                type:'line'
+            }]);
+
+            // automatically retrieve next data point
+            var cnt = 0;
+            setInterval(function(){
+                // extend chart with new datapoints
+                Plotly.extendTraces('chart',{ y:[[getData()]]}, [0]);
+                // slide chart along with new data
+                cnt++;
+                // start sliding chart after 500 data points
+                if(cnt > 500) {
+                    Plotly.relayout('chart',{
+                        xaxis: {
+                            range: [cnt-500,cnt] // redefine x-axis range
+                        }
+                    });
+                }
+            },150); // chart updating frequency
+        </script>
+    </div>
+    </body>
+</html>
