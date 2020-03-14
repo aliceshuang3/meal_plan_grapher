@@ -52,7 +52,7 @@ function makePlotly(y){
   makeplot();
 
 function replot() {
-  Plotly.d3.csv("testData.csv", function(data){ reprocessData(data) } );
+  Plotly.d3.csv("testData2.csv", function(data){ reprocessData(data) } );
 
 };
 
@@ -64,16 +64,17 @@ function reprocessData(allRows) {
     row = allRows[i];
     y.push( row['dollars'] );
   }
-  return y;
+  console.log('Y', y);
+  makePlotly(y);
 }
 
 // automatically retrieve next data point
 var cnt = 0;
 setInterval(function(){
-    let newY = [];
-    newY = replot();
+    // let newY = [];
+    // newY = replot();
     // extend chart with new datapoints
-    Plotly.extendTraces('myDiv',{ y:[[newY]]}, [0]);
+    Plotly.extendTraces('myDiv',{ y: [[replot()]]}, [0]);
     // slide chart along with new data
     cnt++;
     // start sliding chart after 500 data points
@@ -84,4 +85,4 @@ setInterval(function(){
             }
         });
     }
-},1500); // chart updating frequency
+},3000); // chart updating frequency
