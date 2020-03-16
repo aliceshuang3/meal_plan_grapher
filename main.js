@@ -1,33 +1,13 @@
-// function getData() {
-//     let spending = [], vals = [];
-//     d3.csv('testData.csv', function(d) {
-//       spending.push(Number(d.dollars));
-//       return {
-//         spent: Number(d.dollars.trim())
-//       }
-//     }).then(function(d) {
-//       vals = spending.spent;
-//       makePlotly(vals);
-//     })
-// }
-//
-// function makePlotly(vals) {
-//   console.log(vals);
-//   // create line chart
-//   Plotly.plot('chart',[{
-//       y: vals, // pass array
-//       type:'line'
-//   }]);
-//
-// }
-// getData();
+// Src: https://plot.ly/javascript/ajax-call/
 
-function makeplot() {
-  Plotly.d3.csv("testData.csv", function(data){ processData(data) } );
+// load file
+function makeplot(divName, filename) {
+  Plotly.d3.csv(filename, function(data){ processData(data, divName) } );
 
 };
 
-function processData(allRows) {
+// extract column of data
+function processData(allRows, divName) {
 
   console.log(allRows);
   var y = [];
@@ -37,26 +17,46 @@ function processData(allRows) {
     y.push( row['dollars'] );
   }
   console.log('Y',y);
-  makePlotly(y);
+  makePlotly(y, divName);
 }
 
-function makePlotly(y){
-  var plotDiv = document.getElementById("chart");
+// plot chart
+function makePlotly(y, divName){
+  console.log(divName);
+  var plotDiv = document.getElementById(divName);
   var traces = [{
     y: y
   }];
 
-  Plotly.newPlot('myDiv', traces,
-    {title: 'Plotting CSV data from AJAX call'});
-};
-  makeplot();
-
-function replot() {
-  Plotly.d3.csv("testData2.csv", function(data){ reprocessData(data) } );
-
+  Plotly.newPlot(divName, traces,
+    {title: divName});
 };
 
-function reprocessData(allRows) {
+/*************Functions for Plotting New Data Points********************/
+
+function updateGraph(graph, filename) {
+  // extend chart with new datapoints
+  Plotly.extendTraces(graph, { y: [[replot(graph, filename)]]}, [0]);
+  // slide chart along with new data
+  cnt++;
+  // start sliding chart after 500 data points
+  if(cnt > 500) {
+      Plotly.relayout(graph,{
+          xaxis: {
+              range: [cnt-500,cnt] // redefine x-axis range
+          }
+      });
+  }
+}
+
+// open up file
+function replot(divName, filename) {
+  Plotly.d3.csv(filename, function(data){ reprocessData(data, divName) } );
+
+};
+
+// read in column of data
+function reprocessData(allRows, divName) {
 
   var y = [];
 
@@ -65,24 +65,19 @@ function reprocessData(allRows) {
     y.push( row['dollars'] );
   }
   console.log('Y', y);
-  makePlotly(y);
+  makePlotly(y, divName);
 }
+
+/**********************JavaScript Program****************************/
+// start loading data and plotting charts
+makeplot('Dining Dollars', 'testData.csv');
+makeplot('Swat Points', 'swatPoints.csv');
 
 // automatically retrieve next data point
 var cnt = 0;
 setInterval(function(){
-    // let newY = [];
-    // newY = replot();
-    // extend chart with new datapoints
-    Plotly.extendTraces('myDiv',{ y: [[replot()]]}, [0]);
-    // slide chart along with new data
-    cnt++;
-    // start sliding chart after 500 data points
-    if(cnt > 500) {
-        Plotly.relayout('myDiv',{
-            xaxis: {
-                range: [cnt-500,cnt] // redefine x-axis range
-            }
-        });
-    }
+    // update all 3 graphs
+    updateGraph('Dining Dollars', 'testData2.csv');
+    updateGraph('Swat Points', 'swatPoints2.csv');
+
 },3000); // chart updating frequency
