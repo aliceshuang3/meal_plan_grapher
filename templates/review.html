@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+
+{% block heading %}
+    Review Submission for {{title}}
+{% endblock %}
+
+{% block body %}
+
+    <span class="login">Logged in as: <strong>{{id3}}</strong></span>
+
+    <!--add form to collect details-->
+    <form action="{{url_for('submit', isbn=id)}}" method="post" class="special_button">
+      <span>Select a rating on a scale from 1 to 5 stars: </span>
+      <!--radio buttons-->
+      <div class="form-group" name="star">
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="1">
+          <label class="form-check-label" for="inlineRadio1">1</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="2">
+          <label class="form-check-label" for="inlineRadio2">2</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="3">
+          <label class="form-check-label" for="inlineRadio3">3</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio4" value="4">
+          <label class="form-check-label" for="inlineRadio4">4</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio5" value="5">
+          <label class="form-check-label" for="inlineRadio5">5</label>
+        </div>
+      </div>
+      <p class="special_input">
+        <div class="form-group">
+          <label for="comment">Enter any comments you have: </label>
+          <input type="text" name="comment" class="form-control" id="comment" aria-describedby="comment" placeholder="Start Typing...">
+        </div>
+      </p>
+
+      <p class="special_input">
+        <button type="submit" class="btn btn-outline-info btn-lg">Submit Review</button>
+      </p>
+    <form>
+
+
+
+
+{% endblock %}

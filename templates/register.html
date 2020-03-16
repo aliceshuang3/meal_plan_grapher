@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block heading %}
+    Register - Create an Account
+{% endblock %}
+
+{% block body %}
+    <p class="intro">
+        Create an account to start reading, writing, and more!
+        <a href="{{ url_for('index') }}"><button type="button" class="btn btn-outline-info btn-sm">Go back</button></a>
+    </p>
+
+    <!--add form to collect details-->
+    <form action="{{url_for('hello')}}" method="post">
+      <div class="form-group">
+        <label for="firstname">First Name: </label>
+        <input type="text" name="firstname" class="form-control" id="firstname" aria-describedby="firstname" placeholder="Enter Your First Name">
+      </div>
+      <div class="form-group">
+        <label for="lastname">Last Name: </label>
+        <input type="text" name="lastname" class="form-control" id="lastname" aria-describedby="lastname" placeholder="Enter Your Last Name">
+      </div>
+      <div class="form-group">
+        <label for="username">Username: </label>
+        <input type="text" name="username" class="form-control" id="username" aria-describedby="username" placeholder="Enter a Username">
+      </div>
+      <div class="form-group">
+        <label for="password">Password: </label>
+        <input type="password" name="password" class="form-control" id="password" aria-describedby="password" placeholder="Enter a Password">
+      </div>
+
+      <button type="submit" class="btn btn-outline-info btn-lg">Submit</button>
+    <form>
+
+
+{% endblock %}

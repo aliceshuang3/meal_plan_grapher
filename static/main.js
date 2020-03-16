@@ -70,14 +70,14 @@ function reprocessData(allRows, divName) {
 
 /**********************JavaScript Program****************************/
 // start loading data and plotting charts
-makeplot('Dining Dollars', 'testData.csv');
-makeplot('Swat Points', 'swatPoints.csv');
+makeplot('Dining Dollars', 'static/diningDollars.csv');
+makeplot('Swat Points', 'static/swatPoints.csv');
 
 // automatically retrieve next data point
 var cnt = 0;
 setInterval(function(){
     // update all 3 graphs
-    updateGraph('Dining Dollars', 'testData2.csv');
-    updateGraph('Swat Points', 'swatPoints2.csv');
+    updateGraph('Dining Dollars', 'static/diningDollars2.csv');
+    updateGraph('Swat Points', 'static/swatPoints2.csv');
 
 },3000); // chart updating frequency

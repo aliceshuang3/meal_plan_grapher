@@ -1,0 +1,71 @@
+{% extends "layout.html" %}
+
+{% block heading %}
+    {{ book.title }}
+{% endblock %}
+
+{% block body %}
+
+
+    <span class="login">Logged in as: <strong>{{id3}}</strong></span>
+
+    <p class="backtosearch">
+        <a href="{{ url_for('search') }}"><button type="button" class="btn btn-outline-info btn-sm">Back to Search</button></a>
+    </p>
+
+    <p class="special_button heading">Book Details</p>
+    <p>
+        Author: {{ book.author }}
+    </p>
+    <p>Publication Year: {{ book.year }}</p>
+    <p>ISBN Number: {{ book.isbn }}</p>
+    <p>Average Rating on Goodreads: {{data.books[0].average_rating}}</p>
+    <p>Number of Ratings on Goodreads: {{data.books[0].work_ratings_count}}</p>
+    <p class="heading"><br>Reviews</p>
+
+    {% if empty %}
+      <p>No reviews for this book yet.</p>
+    {% else %}
+      <div class="container">
+        <div class="row">
+          <div class="col-4">
+            <p>
+              <ul>
+                {% for review in reviews %}
+                  <li>
+                      Rating: <span>{{ review.rating }}/5</span>
+                  </li>
+                {% endfor %}
+              </ul>
+            </p>
+          </div>
+          <div class="col-4">
+            <p>
+              <ul>
+                {% for review in reviews %}
+                  <li>
+                      Review: <span>{{ review.review }}</span>
+                  </li>
+                {% endfor %}
+              </ul>
+            </p>
+          </div>
+          <div class="col-4">
+            <p>
+              <ul>
+                {% for user in users %}
+                  <li>
+                      Review by: <span>{{ user.username }}</span>
+                  </li>
+                {% endfor %}
+              </ul>
+            </p>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+
+    <p><br><a href="{{ url_for('write', isbn=book.isbn) }}"><button type="submit" class="btn btn-outline-info btn-lg">Submit a Review</button></a>
+
+
+{% endblock %}

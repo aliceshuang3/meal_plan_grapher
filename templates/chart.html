@@ -1,0 +1,49 @@
+<!-- Alice Huang, 3/11/20
+Financal Literacy Budget/Meal Plan Tracker Project
+Src code: https://redstapler.co/javascript-realtime-chart-plotly/
+
+Plots a real-time updating line graph. -->
+
+<!-- <html>
+    <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="plotly-latest.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    </head>
+    <body>
+    <div class="navbar"><span>Swarthmore Meal Plan Tracker</span></div>
+
+
+    </body>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://d3js.org/d3-queue.v3.min.js"></script>
+    <script src="main.js"></script>
+</html> -->
+
+{% extends "layout.html" %}
+
+{% block heading %}
+<script src="{{url_for('static', filename='plotly-latest.min.js')}}"></script>
+<script src="{{url_for('static', filename='main.js')}}"></script>
+<!-- <script src="{{url_for('static', filename='https://d3js.org/d3.v5.min.js')}}"></script>
+<script src="{{url_for('static', filename='https://d3js.org/d3-queue.v3.min.js')}}"></script> -->
+
+    Swarthmore Meal Plan Tracker
+{% endblock %}
+
+{% block body %}
+  <h1>Spending History: September 1, 2019-Present</h1>
+
+  <span class="login">Logged in as: <strong>{{id}}</strong></span>
+
+  <div class="wrapper">
+      <div id="Dining Dollars"></div>
+      <div id="Swat Points"></div>
+      <div id="Meal Swipes"></div>
+  </div>
+
+{% endblock %}
+<script src="{{url_for('static', filename='plotly-latest.min.js')}}"></script>
+<!-- <script src="https://d3js.org/d3.v5.min.js"></script>
+<script src="https://d3js.org/d3-queue.v3.min.js"></script>
+<script src="main.js"></script> -->

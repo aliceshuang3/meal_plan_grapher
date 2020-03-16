@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+{% block heading %}
+    {{ message }}
+{% endblock %}
+
+{% block body %}
+
+    <p class=intro>
+      <a href="{{ url_for('search') }}"><button type="button" class="btn btn-outline-info btn-lg">Back to Search</button></a>
+    </p>
+
+    <p>Rating: {{rating}}</p>
+    <p>Review: {{review}}</p>
+
+{% endblock %}

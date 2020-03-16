@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block heading %}
+    Search for a book - by ISBN number, title, or author!
+{% endblock %}
+
+{% block body %}
+
+    <span class="login">Logged in as: <strong>{{id2}}</strong></span>
+
+    <p class="backtosearch">
+      <a href="{{ url_for('logout') }}"><button type="button" class="btn btn-outline-info btn-sm">Logout</button></a></p>
+    </p>
+    <!--add form to search by keyword-->
+    <!--dropdown menu for search category-->
+    <form action="{{url_for('matches')}}" method="post">
+      <p class="special_button">
+        <div class="form-group">
+            <select class="form-control" name="category">
+                <option value="isbn">ISBN Number</option>
+                <option value="title">Title</option>
+                <option value="author">Author</option>
+            </select>
+        </div>
+      </p>
+
+      <!--search text field-->
+      <div class="form-group">
+        <input type="text" name="keyword" class="form-control" id="keyword" aria-describedby="keyword" placeholder="Enter a keyword...">
+      </div>
+
+      <button type="submit" class="btn btn-outline-info btn-lg">Search!</button>
+
+    <form>
+
+
+
+{% endblock %}

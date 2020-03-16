@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block heading %}
+    Matching results found...
+{% endblock %}
+
+{% block body %}
+
+  <span class="login">Logged in as: <strong>{{id2}}</strong></span>
+
+    <p class="special_button">
+      <ul>
+        {% for match in matches %}
+          <li>
+              <a href="{{ url_for('match', isbn=match.isbn)}}">
+                  <strong>{{ match.title }}</strong> by {{ match.author }}, {{match.year}}, ISBN: {{match.isbn}}
+              </a>
+          </li>
+        {% endfor %}
+      </ul>
+    </p>
+
+
+{% endblock %}
