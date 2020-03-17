@@ -23,22 +23,21 @@ Plots a real-time updating line graph. -->
 {% extends "layout.html" %}
 
 {% block heading %}
-<script src="{{url_for('static', filename='plotly-latest.min.js')}}"></script>
-<script src="{{url_for('static', filename='main.js')}}"></script>
+  <script src="{{url_for('static', filename='plotly-latest.min.js')}}"></script>
+  <script src="{{url_for('static', filename='main.js')}}"></script>
 <!-- <script src="{{url_for('static', filename='https://d3js.org/d3.v5.min.js')}}"></script>
 <script src="{{url_for('static', filename='https://d3js.org/d3-queue.v3.min.js')}}"></script> -->
 
-    Swarthmore Meal Plan Tracker
+  Swarthmore Meal Plan Tracker
 {% endblock %}
 
 {% block body %}
-  <h1>Spending History: September 1, 2019-Present</h1>
+  <p class = "intro">See your spending history (September 1, 2019-Present) for dining dollars and Swat points below.
+  <a href="{{ url_for('index') }}"><button type="button" class="btn btn-outline-danger btn-sm" id="home">Home</button></a></p>
 
-  <span class="login">Logged in as: <strong>{{id}}</strong></span>
-
-  <div class="wrapper">
-      <div id="Dining Dollars"></div>
-      <div id="Swat Points"></div>
+  <div class="wrapper row justify-content-center">
+      <div id="Dining Dollars" class="chart"></div>
+      <div id="Swat Points" class="chart"></div>
       <div id="Meal Swipes"></div>
   </div>
 

@@ -9,8 +9,8 @@
   <span class="login">Logged in as: <strong>{{id}}</strong></span>
 
   <br><br>
-  <p>
-    <a href="{{ url_for('chart') }}"><button type="button" class="btn btn-outline-info btn-lg">Visualize Budget</button></a>
-  </p>
+  <div class="row justify-content-center">
+      <a href="{{ url_for('chart') }}"><button type="button" class="btn btn-outline-danger btn-lg">Visualize Budget</button></a>
+  </div>
 
 {% endblock %}

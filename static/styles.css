@@ -29,6 +29,10 @@ h1 {
   padding: 5px 40px;
 }
 
+div.row.justify-content-center {
+  border-style: none;
+}
+
 .btn-sm {
   margin: 0px 0px 0px 30px;
 }
@@ -66,14 +70,14 @@ li a {
 }
 
 li a:hover {
-  color: #17a2b8;
+  color: #DC3545;
   text-decoration: none;
 }
 
 p.heading {
   font-size: 18px;
   font-weight: bold;
-  color: #17a2b8;
+  color: #DC3545;
 }
 
 .col-4 {
@@ -95,7 +99,7 @@ p.heading {
 }
 
 .col-4 span {
-  color: #17a2b8;
+  color: #DC3545;
   font-weight: normal;
 }
 
@@ -105,4 +109,8 @@ p.heading {
 
 .special_input {
   margin-top: 60px;
+}
+
+.chart {
+  width: 75%;
 }
