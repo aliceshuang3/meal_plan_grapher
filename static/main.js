@@ -10,26 +10,34 @@ function makeplot(divName, filename) {
 function processData(allRows, divName) {
 
   console.log(allRows);
-  var y = [];
+  var y = [], projected = [], rec = [];
 
   for (var i=0; i<allRows.length; i++) {
     row = allRows[i];
     y.push( row['dollars'] );
+    projected.push( row['projected'] );
+    rec.push( row['rec'] );
   }
-  console.log('Y',y);
-  makePlotly(y, divName);
+  makePlotly(y, projected, rec, divName);
 }
 
 // plot chart
-function makePlotly(y, divName){
-  console.log(divName);
+function makePlotly(y, y2, y3, divName){
   var plotDiv = document.getElementById(divName);
   var traces = [{
-    y: y
+    y: y,
+    name: "spending"
+  },
+  {
+    y: y2,
+    name: "projected"
+  },
+  {
+    y: y3,
+    name: "recommended"
   }];
 
-  Plotly.newPlot(divName, traces,
-    {title: divName});
+  Plotly.newPlot(divName, traces, {title: divName});
 };
 
 /*************Functions for Plotting New Data Points********************/
@@ -58,14 +66,15 @@ function replot(divName, filename) {
 // read in column of data
 function reprocessData(allRows, divName) {
 
-  var y = [];
+  var y = [], projected = [], rec = [];
 
   for (var i=0; i<allRows.length; i++) {
     row = allRows[i];
     y.push( row['dollars'] );
+    projected.push( row['projected'] );
+    rec.push( row['rec'] );
   }
-  console.log('Y', y);
-  makePlotly(y, divName);
+  makePlotly(y, projected, rec, divName);
 }
 
 /**********************JavaScript Program****************************/
