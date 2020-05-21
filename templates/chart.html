@@ -41,6 +41,8 @@ Plots a real-time updating line graph. -->
       <div id="Meal Swipes"></div>
   </div>
 
+  <a href="{{ url_for('data') }}"><button type="button" class="btn btn-outline-danger btn-sm" id="home">Load Data</button></a></p>
+
 {% endblock %}
 <script src="{{url_for('static', filename='plotly-latest.min.js')}}"></script>
 <!-- <script src="https://d3js.org/d3.v5.min.js"></script>
