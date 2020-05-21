@@ -2,7 +2,8 @@
 
 // load file
 function makeplot(divName, filename) {
-  Plotly.d3.csv(filename, function(data){ processData(data, divName) } );
+  // add random #s to csv name to prevent ajax caching
+  Plotly.d3.csv(filename+"?"+(new Date()).getTime(), function(data){ processData(data, divName) } );
 
 };
 
@@ -59,7 +60,8 @@ function updateGraph(graph, filename) {
 
 // open up file
 function replot(divName, filename) {
-  Plotly.d3.csv(filename, function(data){ reprocessData(data, divName) } );
+  // add random #s to csv name to prevent ajax caching
+  Plotly.d3.csv(filename+"?"+(new Date()).getTime(), function(data){ reprocessData(data, divName) } );
 
 };
 
@@ -87,6 +89,7 @@ var cnt = 0;
 setInterval(function(){
     // update all 3 graphs
     updateGraph('Dining Dollars', 'static/diningDollars2.csv');
+    // print("updating");
     updateGraph('Swat Points', 'static/swatPoints2.csv');
 
 },3000); // chart updating frequency
