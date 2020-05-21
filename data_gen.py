@@ -1,3 +1,8 @@
+# tutorial: https://www.youtube.com/watch?v=Ercd-Ip5PfQ
+# program for generating random live data that saves automatically to
+# an updating csv file - used to model live graphing functionality of
+# main.js code 
+
 import csv
 import random
 import time
